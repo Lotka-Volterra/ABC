@@ -12,10 +12,8 @@ print(bool(2))
 print(bool())
 # False
 
-<<<<<<< HEAD
 # 2数の大小比較で2数が異なる数なら、ifではなくmax()を使ったほうが短く書ける
 if A > B:
-=======
 
 #ABC167。末尾の一つ前までは:−1
 if s==t[:-1]:
@@ -24,7 +22,6 @@ else:
     print("No")
 #2数の大小比較で2数が異なる数なら、ifではなくmax()を使ったほうが短く書ける
 if A>B:
->>>>>>> 416318cff9730c9e57bd28b5dc918a96ccd6ebaa
     print(A)
 else:
     print(B)
@@ -181,7 +178,6 @@ for x in A:
 # 答えを出力する
 print(counter)
 
-<<<<<<< HEAD
 # 数字を空白区切りで出力するにはカンマを使う
 print(a, b - 1)
 
@@ -270,7 +266,5 @@ if len(set(l)) == 2:
     print("Yes")
 else:
     print("No")
-=======
 #数字を空白区切りで出力するにはカンマを使う
 print(a, b - 1)
->>>>>>> 416318cff9730c9e57bd28b5dc918a96ccd6ebaa
