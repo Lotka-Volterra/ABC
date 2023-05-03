@@ -1,9 +1,9 @@
-# s = input()
-# Aind = -1
-# for i in range(len(s)):
-#     if s[i] == "a":
-#         Aind = i + 1
-# print(Aind)
+s = input()
+Aind = -1
+for i in range(len(s)):
+    if s[i] == "a":
+        Aind = i + 1
+print(Aind)
 
 # 後ろから見る
 s = input()
