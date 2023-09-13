@@ -8,7 +8,7 @@ a = list(map(int, input().split()))
 # 組み合わせの総数
 count = 0
 
-# iから(1<<n)-1まで全探索。
+# ０から(1<<n)-1まで全探索。
 for i in range(1 << n):
     sum = 0
     for j in range(n):

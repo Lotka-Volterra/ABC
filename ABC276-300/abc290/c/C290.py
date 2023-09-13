@@ -13,9 +13,8 @@ for i in range(1, 1 << n):
             kumi.append(a[j])
     if len(kumi)!=k:
         continue
-    for l in range(min(kumi), 3 * 10**5 + 1):
+    for l in range(3 * 10**5 + 1):
         if l not in kumi:
-            print(l, kumi)
             mex.append(l)
             break
 print(max(mex))
