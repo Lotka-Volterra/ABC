@@ -1,13 +1,28 @@
-n, q = map(int, input().split())
-s = input()
-count = 0
+n,q= map(int,input().split())
+s=input()
+query=[]
+""" sumquery=[]
+sumquery.append(0)
 for i in range(q):
-    t, x = map(int, input().split())
-    # キューの最後尾をキューの先頭に追加
-    if t == 1:
-        count += x
-    # キューのx番目を表示
+    t,x= map(int,input().split())
+    query.append([t,x]) """
+
+""" xsum=0
+for i in range(q):
+    if query[i][0]==1:
+        xsum+=query[i][1]
     else:
-        index = (x - count) % n
-        count %= n
-        print(s[index - 1])
+        xmod=xsum%n
+        s=s[n-xmod:]+s[:n-xmod]
+        print(s[query[i][1]-1])
+        xsum=0 """
+xsum=0
+for i in range(q):
+    t,x= map(int,input().split())
+    if t==1:
+        xsum+=x
+    else:
+        xmod=xsum%n
+        s=s[n-xmod:]+s[:n-xmod]
+        print(s[x-1])
+        xsum=0 
