@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # 開始番号と終了番号を定義
-startNumber=1
-endNumber=25
+startNumber=88
+endNumber=100
 
-cd ABC001-025
+cd ABC076-100
 # ループで指定された範囲の番号に対応する処理を繰り返す
 for ((num=startNumber; num<=endNumber; num++)); do
     # フォルダ名を生成
@@ -20,14 +20,38 @@ for ((num=startNumber; num<=endNumber; num++)); do
         echo "Copying from ${SOURCE_FILE} to ${DEST_FILE}"
         cp "$SOURCE_FILE" "$DEST_FILE"
 
-        # # ABCフォルダを削除
-        # rm -r "$ABC_FOLDER"
     else
         echo "Source file ${SOURCE_FILE} not found."
     fi
+
+    # コピー元とコピー先のファイルパスを指定
+    SOURCE_FILEB="${ABC_FOLDER}/${ABC_FOLDER}_B.py"
+    DEST_FILEB="${abc_FOLDER}/b/main.py"
+
+    # コピーを実行
+    if [ -f "$SOURCE_FILEB" ]; then
+        echo "Copying from ${SOURCE_FILEB} to ${DEST_FILEB}"
+        cp "$SOURCE_FILEB" "$DEST_FILEB"
+
+    else
+        echo "Source file ${SOURCE_FILEB} not found."
+    fi
+
+     # コピー元とコピー先のファイルパスを指定
+    SOURCE_FILEC="${ABC_FOLDER}/${ABC_FOLDER}_C.py"
+    DEST_FILEC="${abc_FOLDER}/c/main.py"
+
+    # コピーを実行
+    if [ -f "$SOURCE_FILEC" ]; then
+        echo "Copying from ${SOURCE_FILEC} to ${DEST_FILEC}"
+        cp "$SOURCE_FILEC" "$DEST_FILEC"
+
+    else
+        echo "Source file ${SOURCE_FILEC} not found."
+    fi
+
+    # フォルダを削除
+    rm -r "$ABC_FOLDER"
 done
-
-echo "Copy process completed."
-
 
 echo "Copy process completed."
