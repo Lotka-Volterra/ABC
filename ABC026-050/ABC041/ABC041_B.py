@@ -1,5 +1,0 @@
-a, b, c = map(int, input().split())
-aa = a % (10**9+7)
-bb = b % (10**9+7)
-cc = c % (10**9+7)
-print((aa*bb*cc) % (10**9+7))

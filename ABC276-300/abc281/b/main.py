@@ -1,12 +1,16 @@
 import string
 
 s = input()
-if len(s) != 8:
-    print("No")
-else:
-    if s[0] not in string.ascii_uppercase or s[7] not in string.ascii_uppercase:
-        print("No")
-    elif int(s[1:7]) < 100000 or int(s[1:7]) > 999999:
-        print("No")
-    else:
-        print("Yes")
+if (
+    len(s) == 8
+    and s[0] in string.ascii_uppercase
+    and s[7] in string.ascii_uppercase
+    and ord("1") <= ord(s[1]) <= ord("9")
+):
+    for i in range(2, 7):
+        if ord("0") > ord(s[i]) or ord("9") < ord(s[i]):
+            print("No")
+            quit()
+    print("Yes")
+    quit()
+print("No")
