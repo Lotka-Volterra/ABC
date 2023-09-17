@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # 開始番号と終了番号を定義
-startNumber=201
-endNumber=225
+startNumber=226
+endNumber=250
 
-cd ABC201-225
+cd ABC226-250
 # ループで指定された範囲の番号に対応する処理を繰り返す
 for ((num=startNumber; num<=endNumber; num++)); do
     # フォルダ名を生成
