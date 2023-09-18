@@ -1,5 +1,6 @@
-n= int(input())
-for i in range(n,1000):
-    if n%111==0:
-        print(n)
-        quit()
+n = int(input())
+nmod = n % 111
+if nmod==0:
+    print(n)
+else:
+    print(n + (111-nmod))
