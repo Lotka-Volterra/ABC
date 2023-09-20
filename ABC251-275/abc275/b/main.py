@@ -7,5 +7,5 @@ d %= div
 e %= div
 f %= div
 ABC = (a * b) % div * c % div
-DEF = (d * e) % div * f * div
+DEF = (d * e) % div * f % div
 print((ABC - DEF) % div)
