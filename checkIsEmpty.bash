@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# 051から075までの範囲でループ
-for num in {76..99}; do
+# 026から050までの範囲でループ
+for num in {26..50}; do
     # 対応するフォルダ名を生成
-    ABC_FOLDER="ABC076-100"
+    ABC_FOLDER="ABC026-050"
     abc_FOLDER="abc0${num}"
 
     # 対応するaフォルダ内のmain.pyのパスを指定
@@ -13,5 +13,5 @@ for num in {76..99}; do
     if [ -f "$MAIN_PY_PATH" ] && [ ! -s "$MAIN_PY_PATH" ]; then
         echo "$abc_FOLDER"
     fi
-    # echo "A"
 done
+echo "Checking Completed!"
