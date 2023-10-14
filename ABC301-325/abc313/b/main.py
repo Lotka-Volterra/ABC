@@ -1,19 +1,16 @@
-n,m=  map(int,input().split())
-# ab=[]
-# alist=[0]*n
-# for i in range(m):
-#     a,b= map(int,input().split())
-#     ab.append([a,b])
-#     alist[a-1]+=1
-# ab.sort()
-# print(ab)
-# print(alist)
-
-# TODO:途中。グラフを作って、ある頂点からつながる頂点を渡っていき、つながる頂点がn-1個であればそれが一番強いと判断するという方針。
-graph = [[]]*n
-# print(graph)
+n, m = map(int, input().split())
+a = []
+b = []
 for i in range(m):
-    a,b= map(int,input().split())
-    graph[a-1].append(b-1)
-    print(graph)
-print(graph)
+    ai, bi = map(int, input().split())
+    a.append(ai)
+    b.append(bi)
+# 最強はbに現れない。最強が特定できるときは、n-1人の敗者の情報がbにある。
+if len(b) != n - 1:
+    print(-1)
+else:
+    for i in range(1, n + 1):
+        # bに現れないのが、最強の候補
+        if i not in b:
+            print(i)
+            quit()
