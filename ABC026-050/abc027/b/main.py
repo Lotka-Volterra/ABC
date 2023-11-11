@@ -37,7 +37,25 @@ else:
         else:
             # その島の人口が、島一つあたりの平均人口ではない場合、橋をかける必要がある
             if a[i] != averagePop:
-                tempPop += a[i]
+                tempPop = a[i]
                 bridgeFlag = True
                 ans += 1
     print(ans)
+# n = int(input())
+# a = list(map(int, input().split()))
+# # 総人口pop
+# pop = sum(a)
+# # 総人口が島の数で割り切れないなら、-1を出力
+# if pop % n != 0:
+#     print(-1)
+#     quit()
+# # 一つの島あたりの人口
+# averagePop = pop // n
+# popSum = [a[0]]
+# for i in range(1, n):
+#     popSum.append(popSum[i - 1] + a[i])
+# ans = 0
+# for i in range(n - 1):
+#     if popSum[i] != averagePop * (i + 1):
+#         ans += 1
+# print(ans)
