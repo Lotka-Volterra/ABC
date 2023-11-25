@@ -1,5 +1,6 @@
 from collections import deque
 
+# 地点1を出発地点として各地点への最短距離を出力する幅優先探索
 n, m = map(int, input().split())
 que = deque()
 # 隣接行列

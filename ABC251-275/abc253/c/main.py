@@ -1,22 +1,18 @@
-q= int(input())
-s=[]
-querry=[]
+from collections import defaultdict
+
+q = int(input())
+s = set()
+num = defaultdict(int)
 for i in range(q):
-    querry.append(input())
-
-for i in querry:
-    qu=i[0]
-    if qu=="1":
-        qlist=i.split()
-        s.append(int(qlist[1]))
-    elif qu=="2":
-        qlist=i.split()
-        x=int(qlist[1])
-        c=int(qlist[2])
-        xcnt=s.count(x)
-        minxc=min(xcnt,c)
-        for j in range(minxc):
-            s.remove(x)
+    n, *xc = map(int, input().split())
+    if n == 1:
+        s.add(xc[0])
+        num[xc[0]] += 1
+    elif n == 2:
+        num[xc[0]] = max(0, num[xc[0]] - xc[1])
+        if num[xc[0]] == 0:
+            s.discard(xc[0])
     else:
-        print(max(s)-min(s))
-
+        s = sorted(s)
+        print(s[-1] - s[0])
+        s = set(s)
