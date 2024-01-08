@@ -1,21 +1,30 @@
-h, w = list(map(int, input().split()))
-s = []
-for i in range(h):
-    si = list(map(int, input().split()))
-    s.append(si)
-dp = [[0] * w for i in range(h)]
-for i in range(w):
-    dp[0][i] = s[0][i]
-for i in range(1, h):
-    for j in range(w):
-        if j == 0:
-            dp[i][j] = dp[i - 1][j] + s[i][j]
-            dp[i][j + 1] = dp[i - 1][j] + s[i][j + 1]
-        elif j == w - 1:
-            dp[i][j - 1] = max(dp[i - 1][j] + s[i][j - 1], dp[i][j - 1])
-            dp[i][j] = max(dp[i - 1][j] + s[i][j], dp[i][j])
-        else:
-            dp[i][j - 1] = max(dp[i - 1][j] + s[i][j - 1], dp[i][j - 1])
-            dp[i][j] = max(dp[i - 1][j] + s[i][j], dp[i][j])
-            dp[i][j + 1] = max(dp[i - 1][j] + s[i][j + 1], dp[i][j + 1])
-print(max(dp[h - 1]))
+# n, k = map(int, input().split())
+# a = list(map(int, input().split()))
+# numA = []
+# for i in range(n):
+#     numA.append([a[i], i])
+# numA.sort()
+# common = k // n
+# amari = k % n
+# candy = [0] * n
+# for i in range(n):
+#     candy[numA[i][1]] = common
+#     if i < amari:
+#         candy[numA[i][1]] += 1
+# for i in candy:
+#     print(i)
+# 定数倍の良い実装
+N, K = map(int, input().split())
+a = list(map(int, input().split()))
+
+order = [(a[i] << 32) + i for i in range(N)]
+order.sort()
+for i in range(N):
+    print(format(order[i], "b"))
+answer = [K // N for i in range(N)]
+for i in range(K % N):
+    print(format(order[i], "b"))
+    print(format((1 << 32) - 1, "b"))
+    answer[order[i] & ((1 << 32) - 1)] += 1
+for x in answer:
+    print(x)
