@@ -18,4 +18,4 @@ def toNBase(integer, base):
     while integer:
         answerString = str(integer % n) + answerString
         integer //= base
-    return integer
+    return answerString
