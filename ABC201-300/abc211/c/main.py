@@ -1,38 +1,14 @@
 s = input()
-c = []
-h = []
-o = []
-k = []
-u = []
-d = []
-a = []
-ii = []
+mod = 10**9 + 7
+chokudai = "chokudai"
+dp = [[0] * len(s) for i in range(9)]
 for i in range(len(s)):
-    if s[i] == "c":
-        c.append(i)
-    elif s[i] == "h":
-        h.append(i)
-    elif s[i] == "o":
-        o.append(i)
-    elif s[i] == "k":
-        k.append(i)
-    elif s[i] == "u":
-        u.append(i)
-    elif s[i] == "d":
-        d.append(i)
-    elif s[i] == "a":
-        a.append(i)
-    elif s[i] == "i":
-        ii.append(i)
-count = 0
-for ci in c:
-    for hi in h:
-        for oi in o:
-            for ki in k:
-                for ui in u:
-                    for di in d:
-                        for ai in a:
-                            for iii in ii:
-                                if ci < hi < oi < ki < ui < di < ai < iii:
-                                    count += 1
-print(count % (10**9 + 7))
+    dp[0][i] = 1
+for i in range(1, 9):
+    for j in range(len(s)):
+        if s[j] == chokudai[i - 1]:
+            dp[i][j] += dp[i - 1][j]
+        if j != 0:
+            dp[i][j] += dp[i][j - 1]
+        dp[i][j] %= mod
+print(dp[8][-1])

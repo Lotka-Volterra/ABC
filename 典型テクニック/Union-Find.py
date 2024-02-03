@@ -32,15 +32,17 @@ class unionfind:
         return self.root(u) == self.root(v)
 
 
-# 入力
+# 入力 Nは頂点の数、Qはクエリの数
 N, Q = map(int, input().split())
 queries = [list(map(int, input().split())) for i in range(Q)]
 
 # クエリの処理
 uf = unionfind(N)
 for tp, u, v in queries:
+    # 連結クエリ
     if tp == 1:
         uf.unite(u, v)
+    # 判定クエリ
     if tp == 2:
         if uf.same(u, v):
             print("Yes")
