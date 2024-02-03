@@ -1,5 +1,0 @@
-n = int(input())
-a = list(map(int, input().split()))
-a = list(set(a))
-a.sort()
-print(a[-1] - a[0]) if len(a) >= 2 else print(0)
