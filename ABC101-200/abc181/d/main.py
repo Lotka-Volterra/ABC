@@ -2,7 +2,7 @@ s = input()
 s_dict = [0] * 10
 for i in s:
     s_dict[int(i)] += 1
-for i in range(10 ** (min(3, len(s)) - 1) + 1, 10 ** (min(3, len(s))) + 1):
+for i in range(10 ** (min(3, len(s)) - 1), 10 ** min(3, len(s))):
     if i % 8 != 0:
         continue
     num_dict = [0] * 10
