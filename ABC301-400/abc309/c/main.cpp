@@ -31,27 +31,27 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
+    int N, K, a, b;
+    cin >> N >> K;
+    auto ruiseki = vector<int>(N + 1);
     rep(i, N)
     {
-        A[i] = i + 1;
+        cin >> a >> b;
+        // index0=1日目をb人増やす
+        ruiseki[0] += b;
+        // a+1日目をb人減らす
+        ruiseki[a] -= b;
     }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
+    auto ruisekiwa = vector<int>(N + 1);
+    ruisekiwa[0] = 0;
     rep(i, N)
     {
-        if (i == N - 1)
+        ruisekiwa[i + 1] = ruiseki[i + 1] + ruisekiwa[i];
+        if (ruisekiwa[i + 1] <= K)
         {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
+            cout << i + 2 << endl;
         }
     }
+
     return 0;
 }

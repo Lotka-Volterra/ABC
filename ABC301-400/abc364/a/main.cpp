@@ -31,27 +31,29 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
+    int N;
+    string S;
+    bool flag = false;
     rep(i, N)
     {
-        A[i] = i + 1;
-    }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
-    rep(i, N)
-    {
-        if (i == N - 1)
+        cin >> S;
+        if (S == "sweet")
         {
-            printf("%d\n", A[i]);
+            if (flag)
+            {
+                No;
+                return 0;
+            }
+            else
+            {
+                flag = true;
+            }
         }
         else
         {
-            printf("%d ", A[i]);
+            flag = false;
         }
     }
+    Yes;
     return 0;
 }

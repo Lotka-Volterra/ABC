@@ -31,27 +31,21 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
+    map<int, vector<int>> dict;
+    int N;
+    cin >> N;
+    auto A = input(N);
+    auto W = input(N);
     rep(i, N)
     {
-        A[i] = i + 1;
+        dict[A[i]].push_back(W[i]);
     }
-    rep(i, R - L + 1)
+    int Ans = 0;
+    for (auto p : dict)
     {
-        A[L - 1 + i] = R - i;
+        int sum = reduce(p.second.begin(), p.second.end());
+        Ans += sum - *max_element(p.second.begin(), p.second.end());
     }
-    rep(i, N)
-    {
-        if (i == N - 1)
-        {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
-        }
-    }
+    cout << Ans << endl;
     return 0;
 }

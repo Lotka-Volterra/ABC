@@ -31,27 +31,44 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
-    rep(i, N)
+    string S, Ans = "";
+    cin >> S;
+    int count = 0;
+    rep(i, S.size())
     {
-        A[i] = i + 1;
-    }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
-    rep(i, N)
-    {
-        if (i == N - 1)
+        if (isupper(S[i]))
         {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
+            count++;
         }
     }
+    if (count > S.size() / 2)
+    {
+        rep(i, S.size())
+        {
+            if (islower(S[i]))
+            {
+                Ans += toupper(S[i]);
+            }
+            else
+            {
+                Ans += S[i];
+            }
+        }
+    }
+    else
+    {
+        rep(i, S.size())
+        {
+            if (isupper(S[i]))
+            {
+                Ans += tolower(S[i]);
+            }
+            else
+            {
+                Ans += S[i];
+            }
+        }
+    }
+    cout << Ans << endl;
     return 0;
 }

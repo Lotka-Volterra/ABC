@@ -31,27 +31,11 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
-    rep(i, N)
-    {
-        A[i] = i + 1;
-    }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
-    rep(i, N)
-    {
-        if (i == N - 1)
-        {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
-        }
-    }
+    int N, T, P;
+    cin >> N >> T >> P;
+    auto L = input(N);
+    sort(L.begin(), L.end());
+    reverse(L.begin(), L.end());
+    cout << max(T - L[P - 1], 0) << endl;
     return 0;
 }

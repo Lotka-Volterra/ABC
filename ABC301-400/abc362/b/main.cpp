@@ -31,27 +31,19 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
-    rep(i, N)
+    int xa, ya, xb, yb, xc, yc;
+    cin >> xa >> ya >> xb >> yb >> xc >> yc;
+    int AB = pow(xa - xb, 2) + pow(ya - yb, 2);
+    int BC = pow(xb - xc, 2) + pow(yb - yc, 2);
+    int CA = pow(xc - xa, 2) + pow(yc - ya, 2);
+    if (max(AB, BC, CA) == AB + BC + CA - max(AB, BC, CA))
     {
-        A[i] = i + 1;
+        Yes;
     }
-    rep(i, R - L + 1)
+    else
     {
-        A[L - 1 + i] = R - i;
+        No;
     }
-    rep(i, N)
-    {
-        if (i == N - 1)
-        {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
-        }
-    }
+
     return 0;
 }

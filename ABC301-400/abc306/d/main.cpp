@@ -31,27 +31,26 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
+    int N, X, Y;
+    cin >> N;
+    // i個目まで料理が出された段階で、firstが正、secondが負の状態でのを最大得点を管理。
+    auto DP = vector<pair<int, int>>(N + 1);
+    DP[0].first = 0;
+    DP[0].second = 0;
     rep(i, N)
     {
-        A[i] = i + 1;
-    }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
-    rep(i, N)
-    {
-        if (i == N - 1)
+        cin >> X >> Y;
+        if (X == 0)
         {
-            printf("%d\n", A[i]);
+            // 次が正のとき、もともと正かつ食べる、もともと正かつ食べない、もともと負かつ食べるのどれか
+            DP[i + 1].first = max(DP[i].first + Y, DP[i].first, DP[i].second + Y);
         }
         else
         {
-            printf("%d ", A[i]);
+            // 次が負のとき、もともと正かつ食べる、あるいはもともと負かつ食べないのいずれか
+            DP[i + 1].second = max(DP[i].first + Y, DP[i].second);
         }
     }
+    cout << max(DP[N].first, DP[N].second);
     return 0;
 }

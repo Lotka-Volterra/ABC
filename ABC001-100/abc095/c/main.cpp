@@ -31,27 +31,25 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
-    rep(i, N)
+    int A, B, C, X, Y;
+    cin >> A >> B >> C >> X >> Y;
+    int ans = 0;
+    if (2 * C >= A + B)
     {
-        A[i] = i + 1;
+        ans += min(X, Y) * 2 * C;
     }
-    rep(i, R - L + 1)
+    else
     {
-        A[L - 1 + i] = R - i;
+        ans += min(X, Y) * (A + B);
     }
-    rep(i, N)
+    if (X > Y)
     {
-        if (i == N - 1)
-        {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
-        }
+        ans += (X - Y) * min(2 * C, A);
     }
+    else
+    {
+        ans += (Y - X) * min(2 * C, B);
+    }
+    cout << ans << endl;
     return 0;
 }

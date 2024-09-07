@@ -31,27 +31,22 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
-    rep(i, N)
+    int R, G, B;
+    cin >> R >> G >> B;
+    string C;
+    cin >> C;
+    if (C == "Red")
     {
-        A[i] = i + 1;
+        cout << min(G, B);
     }
-    rep(i, R - L + 1)
+    else if (C == "Green")
     {
-        A[L - 1 + i] = R - i;
+        cout << min(R, B);
     }
-    rep(i, N)
+    else
     {
-        if (i == N - 1)
-        {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
-        }
+        cout << min(R, G);
     }
+
     return 0;
 }

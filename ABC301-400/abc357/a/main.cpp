@@ -31,27 +31,18 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
+    int N, M;
+    cin >> N >> M;
+    auto A = input(N);
     rep(i, N)
     {
-        A[i] = i + 1;
-    }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
-    rep(i, N)
-    {
-        if (i == N - 1)
+        if (M - A[i] < 0)
         {
-            printf("%d\n", A[i]);
+            cout << i << endl;
+            return 0;
         }
-        else
-        {
-            printf("%d ", A[i]);
-        }
+        M -= A[i];
     }
+    cout << N << endl;
     return 0;
 }

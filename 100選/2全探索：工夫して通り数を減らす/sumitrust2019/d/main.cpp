@@ -31,27 +31,32 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
-    rep(i, N)
+    int N;
+    string S;
+    cin >> N >> S;
+    ostringstream ss;
+    int ans;
+    rep(i, 1000)
     {
-        A[i] = i + 1;
-    }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
-    rep(i, N)
-    {
-        if (i == N - 1)
+        ss << setw(3) << setfill('0') << i;
+        bool find1 = false, find2 = false;
+        rep(j, N)
         {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
+            if (!find1 && S[i] == ss.str()[0])
+            {
+                find1 = true;
+            }
+            else if (find1 && !find2 && S[i] == ss.str()[1])
+            {
+                find2 = true;
+            }
+            else if (find2 && S[i] == ss.str()[2])
+            {
+                ans++;
+                break;
+            }
         }
     }
+    cout << ans << endl;
     return 0;
 }

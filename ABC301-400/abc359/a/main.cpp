@@ -31,27 +31,17 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
+    int N, ans = 0;
+    cin >> N;
+    string S;
     rep(i, N)
     {
-        A[i] = i + 1;
-    }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
-    rep(i, N)
-    {
-        if (i == N - 1)
+        cin >> S;
+        if (S == "Takahashi")
         {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
+            ans++;
         }
     }
+    cout << ans << endl;
     return 0;
 }

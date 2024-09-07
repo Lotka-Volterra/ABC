@@ -31,27 +31,16 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
+    int N;
+    cin >> N;
+    auto A = vector<pair<int, int>>(N);
     rep(i, N)
     {
-        A[i] = i + 1;
+        int Ai;
+        cin >> Ai;
+        A[i] = {Ai, i + 1};
     }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
-    }
-    rep(i, N)
-    {
-        if (i == N - 1)
-        {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
-        }
-    }
+    sort(A.begin(), A.end());
+    cout << A[N - 2].second << endl;
     return 0;
 }

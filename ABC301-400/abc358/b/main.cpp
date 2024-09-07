@@ -31,27 +31,17 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, L, R;
-    cin >> N >> L >> R;
-    int A[N];
+    int N, A;
+    auto T = input(N);
+    auto ans = vector<int>(N);
+    ans[0] = T[0];
     rep(i, N)
     {
-        A[i] = i + 1;
-    }
-    rep(i, R - L + 1)
-    {
-        A[L - 1 + i] = R - i;
+        ans[i + 1] = max(ans[i] + A, T[i + 1]);
     }
     rep(i, N)
     {
-        if (i == N - 1)
-        {
-            printf("%d\n", A[i]);
-        }
-        else
-        {
-            printf("%d ", A[i]);
-        }
+        cout << ans[i] << endl;
     }
     return 0;
 }
