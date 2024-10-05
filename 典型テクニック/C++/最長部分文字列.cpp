@@ -29,28 +29,40 @@ vector<int> input(int N)
 
 int main()
 {
-    cout << endl; // 最後に改行　これによって、If文などで分岐させる必要がない
-    int N, K, A[22];
-    cin >> N >> K;
-    for (int i = 0; i < N; i++)
+    // 鉄則本A20
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string S, T;
+    cin >> S >> T;
+    int s = S.size(), t = T.size();
+    vector<vector<int>> A(s + 1, vector<int>(t + 1, 0));
+    rep(i, s + 1)
     {
-        cin >> A[i]; // 直接配列に代入する。別の変数にcinしてから代入する必要がない
+        rep(j, t + 1)
+        {
+            // 右への移動
+            if (j < t)
+            {
+                A[i][j + 1] = max(A[i][j + 1], A[i][j]);
+            }
+            // 下への移動
+            if (i < s)
+            {
+                A[i + 1][j] = max(A[i + 1][j], A[i][j]);
+            }
+            // 右下への移動
+            // SとTのインデックスと、Aのインデックスはずれている
+            if (j < t && i < s && S[i] == T[j])
+            {
+                A[i + 1][j + 1] = A[i][j] + 1;
+            }
+        }
     }
-    // 位取りに'が使える
-    int right = 1'000'000'000;
-    // charを数字に変換するには、'0'を引く
-    (int)('9' - '0');
-    // stringを数字に変換するには、string to int(stoi)
-    stoi("9");
-    // アルファベット→数字の変換
-    char c = 'a';
-    c - 'a';
-
-    // オーバーフロー
-    // 最終的にlong型の変数aに代入するとしても、int型とint型の計算結果を一旦int型として保持するので、オーバーフローは起きる
-    // 掛け算をする前に片方をlong型にキャストすることが必要
-    int n = 50000;
-    long a = n * n;
-    long b = (long)n * n;
+    int ans = 0;
+    rep(i, t + 1)
+    {
+        ans = max(ans, A[s][i]);
+    }
+    cout << ans << endl;
     return 0;
 }

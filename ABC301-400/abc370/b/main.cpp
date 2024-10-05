@@ -29,28 +29,32 @@ vector<int> input(int N)
 
 int main()
 {
-    cout << endl; // 最後に改行　これによって、If文などで分岐させる必要がない
-    int N, K, A[22];
-    cin >> N >> K;
-    for (int i = 0; i < N; i++)
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int N;
+    cin >> N;
+    auto A = vector<vector<int>>(N + 1);
+    rep(i, N)
     {
-        cin >> A[i]; // 直接配列に代入する。別の変数にcinしてから代入する必要がない
+        rep(j, i + 1)
+        {
+            int num;
+            cin >> num;
+            A[i + 1].push_back(num);
+        }
     }
-    // 位取りに'が使える
-    int right = 1'000'000'000;
-    // charを数字に変換するには、'0'を引く
-    (int)('9' - '0');
-    // stringを数字に変換するには、string to int(stoi)
-    stoi("9");
-    // アルファベット→数字の変換
-    char c = 'a';
-    c - 'a';
-
-    // オーバーフロー
-    // 最終的にlong型の変数aに代入するとしても、int型とint型の計算結果を一旦int型として保持するので、オーバーフローは起きる
-    // 掛け算をする前に片方をlong型にキャストすることが必要
-    int n = 50000;
-    long a = n * n;
-    long b = (long)n * n;
+    int i = A[1][0];
+    for (int j = 1; j < N + 1; j++)
+    {
+        if (i >= j)
+        {
+            i = A[i][j - 1];
+        }
+        else
+        {
+            i = A[j][i - 1];
+        }
+    }
+    cout << i << endl;
     return 0;
 }

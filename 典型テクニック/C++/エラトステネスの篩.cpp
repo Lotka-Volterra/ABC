@@ -26,31 +26,31 @@ vector<int> input(int N)
     }
     return vec;
 }
-
+// 鉄則本B26から。N以下の素数を出力する
 int main()
 {
-    cout << endl; // 最後に改行　これによって、If文などで分岐させる必要がない
-    int N, K, A[22];
-    cin >> N >> K;
-    for (int i = 0; i < N; i++)
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int N;
+    cin >> N;
+    // すでに検証した素数の倍数かどうかを判定する。trueなら素数ではない
+    vector<bool> deleted(N + 1, false);
+    // 素数なので2からスタート
+    for (int i = 2; i * i <= N; i++)
     {
-        cin >> A[i]; // 直接配列に代入する。別の変数にcinしてから代入する必要がない
+        // i*2からNまで、iの倍数を消していく
+        for (int j = i * 2; j <= N; j += i)
+        {
+            deleted[j] = true;
+        }
     }
-    // 位取りに'が使える
-    int right = 1'000'000'000;
-    // charを数字に変換するには、'0'を引く
-    (int)('9' - '0');
-    // stringを数字に変換するには、string to int(stoi)
-    stoi("9");
-    // アルファベット→数字の変換
-    char c = 'a';
-    c - 'a';
+    for (int i = 2; i <= N; i++)
+    {
+        if (!deleted[i])
+        {
+            cout << i << endl;
+        }
+    }
 
-    // オーバーフロー
-    // 最終的にlong型の変数aに代入するとしても、int型とint型の計算結果を一旦int型として保持するので、オーバーフローは起きる
-    // 掛け算をする前に片方をlong型にキャストすることが必要
-    int n = 50000;
-    long a = n * n;
-    long b = (long)n * n;
     return 0;
 }

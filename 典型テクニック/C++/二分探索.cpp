@@ -35,6 +35,7 @@ int main()
     auto Iter2 = *upper_bound(a.begin(), a.end(), 4); // 7になる
     // 先頭からの距離を測ることもできる
     // 先頭からの距離とは、その要素より小さい要素の個数
+    // また、これはインデックス番号と一致する(0-indexed)
     auto Iter11 = lower_bound(a.begin(), a.end(), 4);
     auto Iter21 = upper_bound(a.begin(), a.end(), 4);
     cout << "Iter11 = " << Iter11 - a.begin() << endl; // Iter1 = 1。4より小さい要素の個数は1個
@@ -43,5 +44,9 @@ int main()
     // 末尾からの距離とは、その要素以上の要素の個数
     cout << "Iter11 = " << a.end() - Iter11 << endl; // Iter1 = 9。4以上の要素の個数は9個
     cout << "Iter21 = " << a.end() - Iter21 << endl; // Iter1 = 9。4より大きい要素の個数は7個
+
+    // lower_boundの挙動
+    // vector<int> Aの最初の要素よりも探索する数xが小さい場合は、A.begin()を返す。これはkey以上の値がA.begin()であるため。
+    // Aの末尾の要素よりも探索する数xが大きい場合は、A.end()を返す。A.end()はコンテナAの末尾の次の要素であり、イテレータの終了条件でもある。
     return 0;
 }

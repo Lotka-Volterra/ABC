@@ -29,28 +29,49 @@ vector<int> input(int N)
 
 int main()
 {
-    cout << endl; // 最後に改行　これによって、If文などで分岐させる必要がない
-    int N, K, A[22];
-    cin >> N >> K;
-    for (int i = 0; i < N; i++)
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string X;
+    cin >> X;
+    auto ans = vector<char>();
+    // 逆順にして末尾から見る
+    reverse(X.begin(), X.end());
+    // ゼロ以外フラグ。ゼロ以外の数字が初めて出てきた時trueになる
+    bool zeroIgaiFlag = false;
+    // 0は例外的に処理
+    if (X == "0")
     {
-        cin >> A[i]; // 直接配列に代入する。別の変数にcinしてから代入する必要がない
+        cout << 0 << endl;
+        return 0;
     }
-    // 位取りに'が使える
-    int right = 1'000'000'000;
-    // charを数字に変換するには、'0'を引く
-    (int)('9' - '0');
-    // stringを数字に変換するには、string to int(stoi)
-    stoi("9");
-    // アルファベット→数字の変換
-    char c = 'a';
-    c - 'a';
 
-    // オーバーフロー
-    // 最終的にlong型の変数aに代入するとしても、int型とint型の計算結果を一旦int型として保持するので、オーバーフローは起きる
-    // 掛け算をする前に片方をlong型にキャストすることが必要
-    int n = 50000;
-    long a = n * n;
-    long b = (long)n * n;
+    rep(i, X.size())
+    {
+        if (!zeroIgaiFlag)
+        {
+            if (X[i] == '0')
+            {
+                continue;
+            }
+            else if (X[i] == '.')
+            {
+                zeroIgaiFlag = true;
+            }
+            else
+            {
+                ans.push_back(X[i]);
+            }
+        }
+        else
+        {
+            ans.push_back(X[i]);
+        }
+    }
+    reverse(ans.begin(), ans.end());
+    rep(i, ans.size())
+    {
+        cout << ans[i];
+    }
+    cout << endl;
     return 0;
 }
