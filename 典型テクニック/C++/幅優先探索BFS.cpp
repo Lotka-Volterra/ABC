@@ -3,6 +3,7 @@
 using namespace std;
 // using namespace atcoder;
 using ll = long long;
+using Graph = vector<vector<int>>;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 // usage:rep(i,3){ processing }  i starts at 0 and increments by 1 until it reaches n.
 #define rep2(i, s, n) for (int i = (s); i < (int)(n); i++)
@@ -25,8 +26,60 @@ vector<int> input(int N)
     }
     return vec;
 }
+// 入力: グラフ G と,探索の始点 s
+// 出力: s から各頂点への最短経路長を表す配列
+vector<int> BFS(const Graph &G, int s)
+{
+    int N = (int)G.size();   // 頂点数
+    vector<int> dist(N, -1); // 全頂点を「未訪問」に初期化
+    queue<int> que;
 
+    // 初期条件(頂点0を初期頂点とする)
+    dist[s] = 0;
+    que.push(s); // 0を訪問予定頂点とする
+
+    // BFS開始(キューが空になるまで探索を行う)
+    while (!que.empty())
+    {
+        int v = que.front(); // キューから先頭頂点を取り出す
+        que.pop();
+
+        // vから辿れる頂点をすべて調べる
+        for (int x : G[v])
+        {
+            // すでに発見済みの頂点は探索しない
+            if (dist[x] != -1)
+            {
+                continue;
+            }
+            // 新たに発見した頂点について距離情報を更新してキューに追加
+            dist[x] = dist[v] + 1;
+            que.push(x);
+        }
+    }
+    return dist;
+}
 int main()
 {
+    // 頂点数と変数
+    int N, M;
+    cin >> N >> M;
+    // グラフ入力受取(ここでは無向グラフを想定)
+    // 注意 ここでは1-indexedに補正している
+    Graph G(N + 1);
+    for (int i = 1; i < M + 1; i++)
+    {
+        int a, b;
+        cin >> a >> b;
+        G[a].push_back(b);
+        G[b].push_back(a);
+    }
+    // 頂点0を始点としたBFS
+    vector<int> dist = BFS(G, 1);
+    // 結果出力(頂点0から各頂点への距離を見る)
+    for (int v = 1; v < N + 1; v++)
+    {
+        cout << v << ": " << dist[v] << endl;
+    }
     return 0;
 }

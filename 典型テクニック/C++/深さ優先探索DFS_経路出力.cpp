@@ -40,15 +40,44 @@ void dfs(const Graph &G, int v)
         dfs(G, next_v); // 再帰的に探索
     }
 }
-
+// ABC270C
+// パスを出力する用のDFS
+deque<int> deq; // 両端キュー double-ended queue.パスの出力用
+bool stop;      // 目的地 to に到達したかどうか
+void dfsRoute(const Graph &G, int v, int to)
+{
+    if (!stop)
+    {
+        deq.push_back(v);
+    }
+    seen[v] = true;
+    if (v == to)
+    {
+        stop = true;
+    }
+    for (auto next_v : G[v])
+    {
+        if (seen[next_v])
+        {
+            continue; // next_vが探索済みなら探索しない
+        }
+        dfsRoute(G, next_v, to); // 再帰的に探索
+    }
+    // toに最終的に到達しなかった場合はdeqから頂点を除く
+    if (!stop)
+    {
+        deq.pop_back();
+    }
+    return;
+}
 int main()
 {
     // Nが頂点数、Mが次数
-    int N, M;
-    cin >> N >> M;
+    int N, x, y;
+    cin >> N >> x >> y;
     // グラフ入力受取（無向グラフを想定）
     Graph G(N + 1);
-    rep(i, M)
+    rep(i, N - 1)
     {
         int a, b;
         cin >> a >> b;
@@ -58,26 +87,20 @@ int main()
     // 探索
     // 注意！下記ではN+1で初期化しているが、これは1-indexedな頂点に補正している
     seen.assign(N + 1, false); // 初期状態では全頂点が未訪問(false)
-    // 連結かどうかを調べるには、適当な頂点からDFSを初めて、探索修了後すべての頂点が訪問済みか調べれば良い
-    dfs(G, 1);
-    for (int i = 1; i < N + 1; i++)
+    stop = false;
+    dfsRoute(G, x, y);
+    while (!deq.empty())
     {
-        if (!seen[i])
+        cout << deq.front();
+        deq.pop_front();
+        if (deq.empty())
         {
-            cout << "非連結" << endl;
-            return 0;
+            cout << endl;
+        }
+        else
+        {
+            cout << " ";
         }
     }
-    cout << "連結" << endl;
-
-    // 下記では全頂点からDFSをしている
-    // rep(v, N)
-    // {
-    //     if (seen[v])
-    //     {
-    //         continue;
-    //     }
-    //     dfs(G, v); // すでに訪問済みなら探索しない
-    // }
     return 0;
 }

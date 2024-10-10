@@ -52,5 +52,45 @@ int main()
     int n = 50000;
     long a = n * n;
     long b = (long)n * n;
+
+    // setの二分探索
+    set<int> num;
+    num.insert(1);
+    num.insert(2);
+    // set独自の二分探索をしないと、O(logN)にならない
+    // https://qiita.com/sinzyousan/items/158b19a9a3fecf8b855f
+    num.lower_bound(1);
+    // イテレータは++や--で一つ大きい・小さい値に移動できる
+    auto itr = num.lower_bound(1);
+    itr++;
+    cout << *itr << endl;
+    // mapの最小値、最大値。setの最小値、最大値(O(1)つまり定数時間)
+    set<int> s;
+    // 最小値のイテレータを指定することで、最小値が取得できる
+    *s.begin();
+    // 最大値はrbegin(reverse begin)
+    *s.rbegin();
+    map<int, char> m;
+    m[3] = 'C';
+    m[7] = 'G';
+    m[8] = 'H';
+    m[4] = 'D';
+    m[5] = 'E';
+    m[1] = 'A';
+    m[2] = 'B';
+    m[6] = 'F';
+    // ABCD...と出力される。つまり、キーが昇順
+    for (auto i = m.begin(); i != m.end(); ++i)
+    {
+        cout << i->first << " " << i->second << "\n";
+    }
+    // 1 A
+    // 2 B
+    // 3 C
+    // 4 D
+    // 5 E
+    // 6 F
+    // 7 G
+    // 8 H
     return 0;
 }
