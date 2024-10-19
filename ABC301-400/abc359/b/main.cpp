@@ -33,9 +33,9 @@ int main()
     cin.tie(nullptr);
     int N;
     cin >> N;
-    auto A = input(N);
+    auto A = input(2 * N);
     int ans = 0;
-    rep(i, N - 2)
+    rep(i, 2 * N - 2)
     {
         if (A[i] == A[i + 2])
         {

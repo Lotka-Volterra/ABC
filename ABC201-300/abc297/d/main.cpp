@@ -31,19 +31,26 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int A, B, ans = 0;
+    ll A, B, ans = 0;
     cin >> A >> B;
     while (A != B)
     {
-        if (A > B)
+        if (B > A)
         {
-            A = A - B;
+            swap(A, B);
+        }
+        ll count = (A - B) / B;
+        ans += count;
+        A -= B * count;
+        if (A == B)
+        {
+            break;
         }
         else
         {
-            B = B - A;
+            A -= B;
+            ans++;
         }
-        ans++;
     }
     cout << ans << endl;
     return 0;

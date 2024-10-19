@@ -33,7 +33,7 @@ int main()
     cin.tie(nullptr);
     int N, T, A;
     cin >> N >> T >> A;
-    if (max(T, A) >= N % 2 + 1)
+    if (max(T, A) * 2 > N)
     {
         Yes;
     }

@@ -37,13 +37,14 @@ int main()
     {
         C += 24;
     }
-    if (B < A && A < C)
+    if ((B < A && A < C) || (B < A + 24 && A + 24 < C))
     {
-        Yes;
+
+        No;
     }
     else
     {
-        No;
+        Yes;
     }
     return 0;
 }

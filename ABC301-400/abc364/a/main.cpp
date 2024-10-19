@@ -32,26 +32,24 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int N;
+    cin >> N;
     string S;
-    bool flag = false;
+    int sweet = 0;
     rep(i, N)
     {
         cin >> S;
         if (S == "sweet")
         {
-            if (flag)
+            sweet++;
+            if (sweet == 2 && i != N - 1)
             {
                 No;
                 return 0;
             }
-            else
-            {
-                flag = true;
-            }
         }
         else
         {
-            flag = false;
+            sweet = 0;
         }
     }
     Yes;

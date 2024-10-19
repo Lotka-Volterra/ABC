@@ -31,13 +31,19 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, A;
-    auto T = input(N);
-    auto ans = vector<int>(N);
-    ans[0] = T[0];
+    ll N, A;
+    cin >> N >> A;
+    vector<ll> T(N);
     rep(i, N)
     {
-        ans[i + 1] = max(ans[i] + A, T[i + 1]);
+        cin >> T[i];
+    }
+    vector<ll> ans(N);
+
+    ans[0] = T[0] + A;
+    for (int i = 1; i < N; i++)
+    {
+        ans[i] = max(ans[i - 1] + A, T[i] + A);
     }
     rep(i, N)
     {

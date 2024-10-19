@@ -33,7 +33,7 @@ int main()
     cin.tie(nullptr);
     string S, T;
     cin >> S >> T;
-    if (S == "Atcoder" && T == "Land")
+    if (S == "AtCoder" && T == "Land")
     {
         Yes;
     }

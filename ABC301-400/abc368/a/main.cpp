@@ -34,21 +34,19 @@ int main()
     int N, K;
     cin >> N >> K;
     auto A = input(N);
-    for (int i = K; i < N; i++)
+    for (int i = N - K; i < N; i++)
     {
-        cout << A[i] << " ";
-    }
-    for (int i = 0; i < K; i++)
-    {
-        if (i != K - 1)
+        if (i != N - K)
         {
-            cout << A[i] << " ";
+            cout << " ";
         }
-        else
-        {
-            cout << A[i] << endl;
-        }
-    }
 
+        cout << A[i];
+    }
+    for (int i = 0; i < N - K; i++)
+    {
+        cout << " " << A[i];
+    }
+    cout << endl;
     return 0;
 }

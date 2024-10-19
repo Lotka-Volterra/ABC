@@ -92,5 +92,57 @@ int main()
     // 6 F
     // 7 G
     // 8 H
+
+    // ベクトルの重複する要素を削除する(setにする必要なし)
+    const int M = 200010;
+
+    vector<vector<int>> card(M, vector<int>());
+    int i;
+    cin >> i;
+    sort(card[i].begin(), card[i].end());
+    card[i].erase(unique(card[i].begin(), card[i].end()), card[i].end());
+    // 1. unique(card[i].begin(), card[i].end()):
+    // uniqueは、指定された範囲内の重複した連続する要素を削除する標準ライブラリの関数です。ここでは、card[i]ベクトルの最初（begin()）から最後（end()）までの範囲で重複する連続要素を削除します。
+    // uniqueは削除された後の新しい終端イテレータを返します。この新しい終端イテレータは、実際にベクトルの要素を削除してはいませんが、重複していない要素の順序を保持したまま要素を前方に詰めます。
+    // unique関数は、例えば [1, 2, 2, 3] のようなベクトルを [1, 2, 3, 3] にして、新しい終端イテレータは3の前（2つ目の3の位置）を指すことになります。
+    // 2. erase(unique(...), card[i].end()):
+    // **erase**関数は、ベクトルの範囲を指定して、その範囲の要素を削除します。eraseの引数に、unique関数が返した新しい終端イテレータと、end()を指定しています。
+    // これにより、uniqueによって残った「重複した要素」を物理的にベクトルから削除します。
+
+    // dequeの要素を順に出力
+    deque<char> ans;
+    for (auto it = ans.begin(); it != ans.end(); ++it)
+    {
+        cout << *it;
+    }
+    cout << endl;
+    // ちなみに逆順（末尾から）出力する方法。rbegin,rendを使うだけ
+    for (auto it = ans.rbegin(); it != ans.rend(); ++it)
+    {
+        cout << *it;
+    }
+    cout << endl;
+
+    // ABC367 過剰なゼロを出力しない方法: double型で受け取る
+    // 過剰なゼロを出力しないとは、0.00->0  0.600->0.6みたいなこと
+    double x;
+    cin >> x;
+    cout << x << "\n";
+
+    // 入力に必ず小数点がある制約(例えば123.000は入力される可能性があるが、123は入力されない)なので、下記の方法でも良い
+    // 末尾が 0 である限り、その文字を削除することを繰り返す。
+    // その後、末尾が . であればそれも削除する。
+    string sx;
+    cin >> sx;
+    while (sx.back() == '0')
+    {
+        sx.pop_back();
+    }
+    if (sx.back() == '.')
+    {
+        sx.pop_back();
+    }
+    cout << x << "\n";
+
     return 0;
 }

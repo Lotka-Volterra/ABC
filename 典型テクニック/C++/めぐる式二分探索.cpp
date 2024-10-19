@@ -1,11 +1,11 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-vector<int> a = {1, 14, 32, 51, 51, 51, 243, 419, 750, 910};
+using ll = long long;
+vector<ll> a = {1, 14, 32, 51, 51, 51, 243, 419, 750, 910};
 // https://qiita.com/drken/items/97e37dd6143e33a64c8c
 // index が条件を満たすかどうか
-bool isOK(int index, int key)
+bool isOK(ll index, ll key)
 {
     if (a[index] >= key) //
         return true;
@@ -14,18 +14,18 @@ bool isOK(int index, int key)
 }
 
 // 汎用的な二分探索のテンプレ
-int binary_search(int key)
+ll binary_search(ll key)
 {
     // ngは条件を満たさないインデックスの最大値
-    int ng = -1; // 「index = 0」が条件を満たすこともあるので、初期値は -1
+    ll ng = -1L; // 「index = 0」が条件を満たすこともあるので、初期値は -1
     // okは条件を満たすインデックスの最小値
-    int ok = (int)a.size(); // 「index = a.size()-1」が条件を満たさないこともあるので、初期値は a.size()
+    ll ok = (ll)a.size(); // 「index = a.size()-1」が条件を満たさないこともあるので、初期値は a.size()
 
     // ok と ng のどちらが大きいかわからないことを考慮
     // (ng,ok]と[ok,ng)の両方に対応できる
     while (abs(ok - ng) > 1)
     {
-        int mid = (ok + ng) / 2;
+        ll mid = (ok + ng) / 2;
 
         if (isOK(mid, key))
             ok = mid;

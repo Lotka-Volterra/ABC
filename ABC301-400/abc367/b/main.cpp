@@ -33,21 +33,19 @@ int main()
     cin.tie(nullptr);
     string X;
     cin >> X;
-    auto ans = vector<char>();
-    // 逆順にして末尾から見る
-    reverse(X.begin(), X.end());
-    // ゼロ以外フラグ。ゼロ以外の数字が初めて出てきた時trueになる
-    bool zeroIgaiFlag = false;
-    // 0は例外的に処理
-    if (X == "0")
-    {
-        cout << 0 << endl;
-        return 0;
-    }
-
+    bool decimalPoint = false;
     rep(i, X.size())
     {
-        if (!zeroIgaiFlag)
+        if (X[i] == '.')
+        {
+            decimalPoint = true;
+        }
+    }
+    bool allZero = true;
+    string ans = "";
+    for (int i = X.size() - 1; i >= 0; --i)
+    {
+        if (decimalPoint)
         {
             if (X[i] == '0')
             {
@@ -55,23 +53,25 @@ int main()
             }
             else if (X[i] == '.')
             {
-                zeroIgaiFlag = true;
+                if (!allZero)
+                {
+                    ans += X[i];
+                }
+                decimalPoint = false;
             }
             else
             {
-                ans.push_back(X[i]);
+                decimalPoint = false;
+                allZero = false;
+                ans += X[i];
             }
         }
         else
         {
-            ans.push_back(X[i]);
+            ans += X[i];
         }
     }
     reverse(ans.begin(), ans.end());
-    rep(i, ans.size())
-    {
-        cout << ans[i];
-    }
-    cout << endl;
+    cout << ans << endl;
     return 0;
 }

@@ -36,10 +36,15 @@ int main()
     auto A = input(N);
     rep(i, N)
     {
-        cout << A[i] << " ";
+        if (i != 0)
+        {
+            cout << " ";
+        }
+
+        cout << A[i];
         if (i == K - 1)
         {
-            cout << X << " " << endl;
+            cout << " " << X;
         }
     }
     cout << endl;

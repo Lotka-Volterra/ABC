@@ -31,21 +31,35 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    map<int, vector<int>> dict;
-    int N;
-    cin >> N;
-    auto A = input(N);
-    auto W = input(N);
-    rep(i, N)
+    string s, T;
+    cin >> s >> T;
+    vector<char> S(s.size() + 1);
+    for (int i = 0; i < s.size(); i++)
     {
-        dict[A[i]].push_back(W[i]);
+        S[i + 1] = s[i];
     }
-    int Ans = 0;
-    for (auto p : dict)
+    // rep(i, S.size())
+    // {
+    //     cout << S[i];
+    // }
+    for (int c = 1; c < s.size(); c++)
     {
-        int sum = reduce(p.second.begin(), p.second.end());
-        Ans += sum - *max_element(p.second.begin(), p.second.end());
+        for (int w = c; w < s.size(); w++)
+        {
+            int length = c;
+            string tateyomi = "";
+            while (length < s.size())
+            {
+                tateyomi += S[length];
+                length += w;
+            }
+            if (tateyomi == T)
+            {
+                Yes;
+                return 0;
+            }
+        }
     }
-    cout << Ans << endl;
+    No;
     return 0;
 }
