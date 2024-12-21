@@ -19,7 +19,7 @@ const vector<pair<int, int>> dpos4 = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
 // const vector<pair<int, int>> dpos8 = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 // ABC211D
 // 入力: グラフ G と,探索の始点 s
-// 出力: s から各頂点への最短経路長を表す配列
+// 出力: 頂点Nへの経路数
 ll BFS(const Graph &G, int s)
 {
     int N = (int)G.size();    // 頂点数

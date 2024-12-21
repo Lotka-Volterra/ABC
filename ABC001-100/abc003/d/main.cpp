@@ -116,26 +116,6 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    ll N;
-    cin >> N;
-    vector<ll> A(N);
-    rep(i, N)
-    {
-        cin >> A[i];
-    }
-    ll allXor = 0LL;
-    rep(i, N)
-    {
-        allXor ^= A[i];
-    }
-    rep(i, N)
-    {
-        if (i != 0)
-        {
-            cout << " ";
-        }
-        cout << (allXor ^ A[i]);
-    }
-    cout << endl;
+
     return 0;
 }

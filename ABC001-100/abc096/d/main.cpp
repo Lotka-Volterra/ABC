@@ -112,29 +112,39 @@ void sortDescending(vector<ll> &vec)
              return a > b; // aがbより大きい場合に先に並べる
          });
 }
+bool isprime(int p)
+{
+    if (p == 1)
+        return false;
+    for (int i = 2; i < p; i++)
+    {
+        if (p % i == 0)
+            return false;
+    }
+    return true;
+}
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    ll N;
-    cin >> N;
-    vector<ll> A(N);
-    rep(i, N)
+    int n;
+    cin >> n;
+    int count = n;
+    for (int i = 2; i <= 55555; i++)
     {
-        cin >> A[i];
-    }
-    ll allXor = 0LL;
-    rep(i, N)
-    {
-        allXor ^= A[i];
-    }
-    rep(i, N)
-    {
-        if (i != 0)
+        if (isprime(i) && i % 5 == 2) // mod5=2になる数。少なくとも5つ選ぶので、和は10以上となり、素数5にはならず5で割れる
         {
-            cout << " ";
+            if (count != n)
+            {
+                cout << " ";
+            }
+            cout << i;
+            n--;
+            if (n == 0)
+            {
+                break;
+            }
         }
-        cout << (allXor ^ A[i]);
     }
     cout << endl;
     return 0;

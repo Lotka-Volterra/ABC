@@ -117,5 +117,18 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    // 解説AC
+    // https://atcoder.jp/contests/abc180/editorial/219
+    long long x, y, a, b;
+    cin >> x >> y >> a >> b;
+    long long ans = 0;
+    // a*xが10**27程度になることがあり、long longではオーバーフローするので、比較地はdoubleに変換する
+    while ((double)a * x <= 2e18 && a * x <= x + b && a * x < y)
+    {
+        x *= a;
+        ans++;
+    }
+    cout << ans + (y - 1 - x) / b << endl; // 1回ずつ割るとTLEする
+
     return 0;
 }
