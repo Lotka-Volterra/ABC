@@ -32,7 +32,7 @@ int main()
     // 鉄則本A57
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, Q;
+    ll N, Q;
     cin >> N >> Q;
     vector<int> A(N + 1, 0);
     for (int i = 1; i < N + 1; i++)
@@ -62,7 +62,7 @@ int main()
         int ans = x;
         rep(j, 30)
         {
-            if (y & (1 << j)) // yと1<<jでAND。yの下からj桁目が2進数表記で1なら、真(非ゼロ)
+            if (y & (1LL << j)) // yと1<<jでAND。yの下からj桁目が2進数表記で1なら、真(非ゼロ)
             {
                 ans = dp[j][ans];
             }

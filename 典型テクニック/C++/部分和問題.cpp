@@ -6,6 +6,7 @@ using namespace std;
 // ABC204D kanpurinさんの回答をC++で書き直し
 // いくつかを選んでその和をなるべくS/2に近づけることが方針。
 // 一次元配列でDPしているのが、個人的に驚きだったのでメモ。
+using ll = long long;
 
 int main()
 {
@@ -26,7 +27,7 @@ int main()
     vector<bool> DP(S / 2 + 1, false);
     DP[0] = true; // 初期状態として、0は常に選べる
 
-    // ダイナミックプログラミングの処理
+    // DPの処理
     for (int i = 0; i < N; i++)
     {
         // 遷移を逆順に行うことで、1つのT[i]に対して遷移が行われた結果を、同じステップ中で二度適用しない

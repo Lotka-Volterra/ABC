@@ -33,8 +33,8 @@ int main()
     cin.tie(nullptr);
     int N;
     cin >> N;
-    vector<bool> deleted(N + 1, false);
     // すでに検証した素数の倍数かどうかを判定する。trueなら素数ではない
+    vector<bool> deleted(N + 1, false);
     // 素数なので2からスタート
     for (int i = 2; i * i <= N; i++)
     {

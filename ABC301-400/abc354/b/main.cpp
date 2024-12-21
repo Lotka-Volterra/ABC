@@ -31,18 +31,18 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, S, C, T;
+    int N, T = 0;
     cin >> N;
-    T = 0;
-    auto SC = vector<pair<string, int>>(N);
+    vector<string> names(N);
     rep(i, N)
     {
+        string S;
+        ll C;
         cin >> S >> C;
-        SC[i].first = S;
-        SC[i].second = C;
         T += C;
+        names[i] = S;
     }
-    sort(SC.begin(), SC.end());
-    cout << SC[T % N].first << endl;
+    sort(names.begin(), names.end());
+    cout << names[T % N] << endl;
     return 0;
 }
